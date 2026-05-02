@@ -36,7 +36,9 @@ const Log = createLogger({
 });
 
 // Tunable factors for priority scoring
-const WEIGHT_FACTOR = 1000;
+// WEIGHT_FACTOR must be much larger than unix timestamps (~1.7B) to ensure
+// type weight always dominates, while recency breaks ties within same type
+const WEIGHT_FACTOR = 10_000_000_000;
 const RECENCY_FACTOR = 1;
 
 /**

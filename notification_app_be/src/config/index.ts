@@ -19,7 +19,7 @@ export const config = {
   clientSecret: process.env.CLIENT_SECRET || "",
 
   // Server settings
-  port: parseInt(process.env.PORT || "5000", 10),
+  port: parseInt(process.env.PORT || "5001", 10),
   baseUrl: process.env.BASE_URL || "http://20.207.122.201",
 
   // Frontend URL for CORS
