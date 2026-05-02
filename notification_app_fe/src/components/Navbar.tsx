@@ -41,34 +41,35 @@ export default function Navbar() {
       position="sticky"
       elevation={0}
       sx={{
-        background: "rgba(18, 24, 41, 0.85)",
-        backdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(124, 77, 255, 0.15)",
+        background: "#FFF176", // Brutalist yellow navbar
+        borderBottom: "3px solid #1A1A1A",
+        color: "#1A1A1A",
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
         {/* Logo / Title */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
           <Box
             sx={{
-              width: 36,
-              height: 36,
-              borderRadius: "10px",
-              background: "linear-gradient(135deg, #7C4DFF, #00E5FF)",
+              width: 40,
+              height: 40,
+              borderRadius: "0px", // Sharp corners
+              background: "#1A1A1A",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              boxShadow: "3px 3px 0px #FF5A36", // Offset orange shadow
             }}
           >
-            <NotificationsIcon sx={{ fontSize: 20, color: "#fff" }} />
+            <NotificationsIcon sx={{ fontSize: 24, color: "#FFF176" }} />
           </Box>
           <Typography
-            variant="h6"
+            variant="h5"
             sx={{
-              background: "linear-gradient(90deg, #B388FF, #00E5FF)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontWeight: 700,
+              fontWeight: 800,
+              color: "#1A1A1A",
+              textTransform: "uppercase",
+              letterSpacing: "-0.04em",
             }}
           >
             {isMobile ? "Notifs" : "Campus Notifications"}
@@ -79,10 +80,16 @@ export default function Navbar() {
         {isMobile ? (
           <>
             <IconButton
-              color="inherit"
               onClick={() => setMobileOpen(!mobileOpen)}
+              sx={{
+                border: "2px solid #1A1A1A",
+                borderRadius: "0px",
+                background: "#FFFFFF",
+                boxShadow: "2px 2px 0px #1A1A1A",
+                "&:hover": { background: "#f0f0f0" },
+              }}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: "#1A1A1A" }} />
             </IconButton>
             {mobileOpen && (
               <Box
@@ -91,13 +98,12 @@ export default function Navbar() {
                   top: "100%",
                   left: 0,
                   right: 0,
-                  background: "rgba(18, 24, 41, 0.95)",
-                  backdropFilter: "blur(20px)",
-                  borderBottom: "1px solid rgba(124, 77, 255, 0.15)",
-                  p: 1,
+                  background: "#FDFBF7",
+                  borderBottom: "3px solid #1A1A1A",
+                  p: 2,
                   display: "flex",
                   flexDirection: "column",
-                  gap: 0.5,
+                  gap: 1.5,
                   zIndex: 1000,
                 }}
               >
@@ -111,11 +117,17 @@ export default function Navbar() {
                     }}
                     sx={{
                       justifyContent: "flex-start",
-                      color: pathname === item.path ? "#7C4DFF" : "#9AA0A6",
-                      backgroundColor:
-                        pathname === item.path
-                          ? "rgba(124, 77, 255, 0.1)"
-                          : "transparent",
+                      color: "#1A1A1A",
+                      border: "2px solid #1A1A1A",
+                      backgroundColor: pathname === item.path ? "#FF5A36" : "#FFFFFF",
+                      boxShadow: "3px 3px 0px #1A1A1A",
+                      borderRadius: "0px", // Brutalist sharp
+                      py: 1,
+                      "&:hover": {
+                        backgroundColor: pathname === item.path ? "#FF5A36" : "#f0f0f0",
+                        transform: "translate(-1px, -1px)",
+                        boxShadow: "4px 4px 0px #1A1A1A",
+                      },
                     }}
                   >
                     {item.label}
@@ -125,24 +137,26 @@ export default function Navbar() {
             )}
           </>
         ) : (
-          <Box sx={{ display: "flex", gap: 1 }}>
+          <Box sx={{ display: "flex", gap: 2 }}>
             {navItems.map((item) => (
               <Button
                 key={item.path}
                 startIcon={item.icon}
                 onClick={() => router.push(item.path)}
                 sx={{
-                  color: pathname === item.path ? "#E8EAED" : "#9AA0A6",
-                  backgroundColor:
-                    pathname === item.path
-                      ? "rgba(124, 77, 255, 0.15)"
-                      : "transparent",
+                  color: "#1A1A1A",
+                  backgroundColor: pathname === item.path ? "#FFFFFF" : "transparent",
+                  border: pathname === item.path ? "2px solid #1A1A1A" : "2px solid transparent",
+                  boxShadow: pathname === item.path ? "3px 3px 0px #1A1A1A" : "none",
                   borderRadius: "8px",
-                  px: 2,
+                  px: 2.5,
+                  py: 1,
+                  fontWeight: 800,
                   transition: "all 0.2s ease",
                   "&:hover": {
-                    backgroundColor: "rgba(124, 77, 255, 0.1)",
-                    color: "#E8EAED",
+                    backgroundColor: pathname === item.path ? "#FFFFFF" : "rgba(26, 26, 26, 0.05)",
+                    border: "2px solid #1A1A1A",
+                    boxShadow: "3px 3px 0px #1A1A1A",
                   },
                 }}
               >

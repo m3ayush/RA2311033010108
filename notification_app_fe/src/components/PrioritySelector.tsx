@@ -28,24 +28,28 @@ export default function PrioritySelector({ value, onChange }: PrioritySelectorPr
         alignItems: "center",
         gap: 2,
         p: 2,
-        borderRadius: "12px",
-        background: "rgba(124, 77, 255, 0.06)",
-        border: "1px solid rgba(124, 77, 255, 0.12)",
+        borderRadius: "0px", // Square borders
+        background: "#FFF176",
+        border: "2px solid #1A1A1A",
+        boxShadow: "4px 4px 0px #1A1A1A",
       }}
     >
-      <TrendingIcon sx={{ color: "#7C4DFF", fontSize: 20 }} />
-      <Typography variant="body2" sx={{ color: "#E8EAED", fontWeight: 500, minWidth: 60 }}>
+      <TrendingIcon sx={{ color: "#1A1A1A", fontSize: 24 }} />
+      <Typography variant="body1" sx={{ color: "#1A1A1A", fontWeight: 800, minWidth: 60, textTransform: "uppercase" }}>
         Top
       </Typography>
       <Chip
         label={value}
-        size="small"
+        size="medium"
         sx={{
-          backgroundColor: "rgba(124, 77, 255, 0.2)",
-          color: "#B388FF",
-          fontWeight: 700,
-          fontSize: "0.9rem",
+          backgroundColor: "#FFFFFF",
+          color: "#1A1A1A",
+          border: "2px solid #1A1A1A",
+          boxShadow: "2px 2px 0px #1A1A1A",
+          fontWeight: 800,
+          fontSize: "1rem",
           minWidth: 40,
+          borderRadius: "0px",
         }}
       />
       <Slider
@@ -57,20 +61,42 @@ export default function PrioritySelector({ value, onChange }: PrioritySelectorPr
         marks={marks}
         sx={{
           flex: 1,
-          color: "#7C4DFF",
+          color: "#1A1A1A",
+          ml: 2,
           "& .MuiSlider-markLabel": {
-            color: "#6B7280",
-            fontSize: "0.7rem",
+            color: "#1A1A1A",
+            fontSize: "0.8rem",
+            fontWeight: 700,
           },
           "& .MuiSlider-thumb": {
-            width: 18,
-            height: 18,
+            width: 24,
+            height: 24,
+            borderRadius: "0px",
+            border: "2px solid #1A1A1A",
+            backgroundColor: "#FF5A36",
+            boxShadow: "2px 2px 0px #1A1A1A",
             "&:hover": {
-              boxShadow: "0 0 12px rgba(124, 77, 255, 0.4)",
+              boxShadow: "3px 3px 0px #1A1A1A",
+            },
+            "&.Mui-active": {
+              boxShadow: "0px 0px 0px #1A1A1A",
             },
           },
           "& .MuiSlider-track": {
-            background: "linear-gradient(90deg, #7C4DFF, #00E5FF)",
+            height: 8,
+            border: "2px solid #1A1A1A",
+            backgroundColor: "#1A1A1A",
+          },
+          "& .MuiSlider-rail": {
+            height: 8,
+            border: "2px solid #1A1A1A",
+            backgroundColor: "#FFFFFF",
+            opacity: 1,
+          },
+          "& .MuiSlider-mark": {
+            width: 4,
+            height: 8,
+            backgroundColor: "#1A1A1A",
           },
         }}
       />

@@ -12,69 +12,80 @@ import { ReactNode } from "react";
 // Custom dark theme with vibrant accents
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#7C4DFF", // Deep purple accent
-      light: "#B388FF",
-      dark: "#651FFF",
+      main: "#1A1A1A", // Solid black for primary interactions
+      light: "#333333",
+      dark: "#000000",
     },
     secondary: {
-      main: "#00E5FF", // Cyan accent
-      light: "#18FFFF",
-      dark: "#00B8D4",
+      main: "#FF5A36", // Vibrant brutalist orange
+      light: "#FF8A65",
+      dark: "#E64A19",
     },
     background: {
-      default: "#0A0E1A",
-      paper: "#121829",
+      default: "#FDFBF7", // Cream background
+      paper: "#FFFFFF", // White cards
     },
     error: {
       main: "#FF5252",
     },
     warning: {
-      main: "#FFB74D",
+      main: "#FFF176", // Brutalist yellow
     },
     success: {
       main: "#69F0AE",
     },
+    info: {
+      main: "#D8B4E2", // Soft purple accent
+    },
     text: {
-      primary: "#E8EAED",
-      secondary: "#9AA0A6",
+      primary: "#1A1A1A",
+      secondary: "#4A4A4A",
     },
   },
   typography: {
-    fontFamily: "'Inter', 'Roboto', sans-serif",
+    fontFamily: "'Inter', 'Space Grotesk', 'Roboto', sans-serif",
     h4: {
+      fontWeight: 800,
+      letterSpacing: "-0.04em",
+      color: "#1A1A1A",
+    },
+    h5: {
       fontWeight: 700,
       letterSpacing: "-0.02em",
     },
-    h5: {
-      fontWeight: 600,
-      letterSpacing: "-0.01em",
-    },
     h6: {
-      fontWeight: 600,
+      fontWeight: 700,
     },
     body1: {
-      fontSize: "0.95rem",
+      fontSize: "1rem",
+      fontWeight: 500,
     },
     body2: {
-      fontSize: "0.85rem",
+      fontSize: "0.9rem",
+      fontWeight: 500,
+    },
+    button: {
+      fontWeight: 700,
+      letterSpacing: "0.02em",
+      textTransform: "uppercase",
     },
   },
   shape: {
-    borderRadius: 12,
+    borderRadius: 8, // Slightly sharp borders for brutalism
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
           backgroundImage: "none",
-          border: "1px solid rgba(124, 77, 255, 0.12)",
-          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          border: "2px solid #1A1A1A",
+          boxShadow: "4px 4px 0px #1A1A1A",
+          transition: "all 0.2s ease-in-out",
           "&:hover": {
-            borderColor: "rgba(124, 77, 255, 0.3)",
-            transform: "translateY(-2px)",
-            boxShadow: "0 8px 32px rgba(124, 77, 255, 0.15)",
+            transform: "translate(-2px, -2px)",
+            boxShadow: "6px 6px 0px #1A1A1A",
           },
         },
       },
@@ -82,17 +93,39 @@ const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          fontWeight: 600,
-          letterSpacing: "0.02em",
+          fontWeight: 700,
+          border: "2px solid #1A1A1A",
+          boxShadow: "2px 2px 0px #1A1A1A",
+          borderRadius: "9999px",
+          transition: "all 0.2s ease",
+          "&:hover": {
+            transform: "translate(-1px, -1px)",
+            boxShadow: "3px 3px 0px #1A1A1A",
+          },
+        },
+        clickable: {
+          "&:active": {
+            boxShadow: "0px 0px 0px #1A1A1A",
+            transform: "translate(2px, 2px)",
+          },
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: "none",
-          fontWeight: 600,
+          border: "2px solid #1A1A1A",
+          boxShadow: "3px 3px 0px #1A1A1A",
           borderRadius: 8,
+          transition: "all 0.2s ease",
+          "&:hover": {
+            transform: "translate(-1px, -1px)",
+            boxShadow: "4px 4px 0px #1A1A1A",
+          },
+          "&:active": {
+            boxShadow: "0px 0px 0px #1A1A1A",
+            transform: "translate(3px, 3px)",
+          },
         },
       },
     },

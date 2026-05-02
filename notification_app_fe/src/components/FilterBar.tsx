@@ -23,25 +23,25 @@ const filters = [
     value: null,
     label: "All",
     icon: <FilterIcon sx={{ fontSize: 16 }} />,
-    color: "#E8EAED",
+    color: "#1A1A1A",
   },
   {
     value: "Placement",
     label: "Placement",
     icon: <PlacementIcon sx={{ fontSize: 16 }} />,
-    color: "#7C4DFF",
+    color: "#D8B4E2",
   },
   {
     value: "Result",
     label: "Result",
     icon: <ResultIcon sx={{ fontSize: 16 }} />,
-    color: "#FFB74D",
+    color: "#FFF176",
   },
   {
     value: "Event",
     label: "Event",
     icon: <EventIcon sx={{ fontSize: 16 }} />,
-    color: "#00E5FF",
+    color: "#FF5A36",
   },
 ];
 
@@ -49,8 +49,8 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
       <Typography
-        variant="body2"
-        sx={{ color: "#9AA0A6", mr: 0.5, fontWeight: 500 }}
+        variant="body1"
+        sx={{ color: "#1A1A1A", mr: 0.5, fontWeight: 700 }}
       >
         Filter:
       </Typography>
@@ -64,19 +64,22 @@ export default function FilterBar({ activeFilter, onFilterChange }: FilterBarPro
             key={filter.label}
             icon={filter.icon}
             label={filter.label}
-            size="small"
+            size="medium"
             onClick={() => onFilterChange(filter.value)}
             sx={{
-              backgroundColor: isActive
-                ? `${filter.color}20`
-                : "rgba(255, 255, 255, 0.05)",
-              color: isActive ? filter.color : "#9AA0A6",
-              border: `1px solid ${isActive ? `${filter.color}40` : "transparent"}`,
+              backgroundColor: isActive ? filter.color : "#FFFFFF",
+              color: isActive && filter.value === null ? "#FFFFFF" : "#1A1A1A",
+              border: "2px solid #1A1A1A",
+              boxShadow: isActive ? "0px 0px 0px #1A1A1A" : "2px 2px 0px #1A1A1A",
+              transform: isActive ? "translate(2px, 2px)" : "none",
+              fontWeight: 800,
               cursor: "pointer",
-              transition: "all 0.2s ease",
+              transition: "all 0.1s ease",
+              "& .MuiChip-icon": {
+                color: isActive && filter.value === null ? "#FFFFFF" : "#1A1A1A",
+              },
               "&:hover": {
-                backgroundColor: `${filter.color}15`,
-                color: filter.color,
+                backgroundColor: isActive ? filter.color : "#F4F0E6",
               },
             }}
           />

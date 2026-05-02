@@ -76,66 +76,54 @@ export default function PriorityNotificationsPage() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 3 }}>
+    <Container maxWidth="md" sx={{ py: 4 }}>
       {/* Page Header */}
-      <Box sx={{ mb: 3 }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1 }}>
+      <Box sx={{ mb: 4, pb: 2, borderBottom: "4px solid #1A1A1A" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
           <Box
             sx={{
-              width: 36,
-              height: 36,
-              borderRadius: "10px",
-              background: "linear-gradient(135deg, #7C4DFF, #FF5252)",
+              width: 48,
+              height: 48,
+              borderRadius: "0px", // Brutalist square
+              background: "#FF5A36",
+              border: "2px solid #1A1A1A",
+              boxShadow: "4px 4px 0px #1A1A1A",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <PriorityIcon sx={{ fontSize: 20, color: "#fff" }} />
+            <PriorityIcon sx={{ fontSize: 28, color: "#1A1A1A" }} />
           </Box>
-          <Typography variant="h4" sx={{ color: "#E8EAED" }}>
+          <Typography variant="h4" sx={{ color: "#1A1A1A", textTransform: "uppercase" }}>
             Priority Inbox
           </Typography>
           <Chip
-            icon={<TrendingIcon sx={{ fontSize: 14 }} />}
-            label={`Top ${priorityN}`}
-            size="small"
+            icon={<TrendingIcon sx={{ fontSize: 16, color: "#1A1A1A !important" }} />}
+            label={`TOP ${priorityN}`}
+            size="medium"
             sx={{
-              backgroundColor: "rgba(124, 77, 255, 0.15)",
-              color: "#B388FF",
-              fontWeight: 600,
+              backgroundColor: "#D8B4E2",
+              color: "#1A1A1A",
+              fontWeight: 800,
+              border: "2px solid #1A1A1A",
+              boxShadow: "2px 2px 0px #1A1A1A",
+              borderRadius: "0px",
             }}
           />
         </Box>
-        <Typography variant="body2" sx={{ color: "#9AA0A6" }}>
+        <Typography variant="body1" sx={{ color: "#4A4A4A", fontWeight: 600 }}>
           Most important unread notifications ranked by priority
         </Typography>
-
-        {/* Priority explanation */}
-        <Box
-          sx={{
-            mt: 1.5,
-            p: 1.5,
-            borderRadius: "8px",
-            background: "rgba(0, 229, 255, 0.04)",
-            border: "1px solid rgba(0, 229, 255, 0.1)",
-          }}
-        >
-          <Typography variant="caption" sx={{ color: "#6B7280" }}>
-            📊 Priority scoring: <strong style={{ color: "#7C4DFF" }}>Placement (3x)</strong> &gt;{" "}
-            <strong style={{ color: "#FFB74D" }}>Result (2x)</strong> &gt;{" "}
-            <strong style={{ color: "#00E5FF" }}>Event (1x)</strong> × recency bonus
-          </Typography>
-        </Box>
       </Box>
 
       {/* Priority Selector */}
-      <Box sx={{ mb: 2.5 }}>
+      <Box sx={{ mb: 3 }}>
         <PrioritySelector value={priorityN} onChange={setPriorityN} />
       </Box>
 
       {/* Filter Bar */}
-      <Box sx={{ mb: 2.5 }}>
+      <Box sx={{ mb: 3 }}>
         <FilterBar activeFilter={filter} onFilterChange={setFilter} />
       </Box>
 
@@ -144,9 +132,14 @@ export default function PriorityNotificationsPage() {
         <Alert
           severity="error"
           sx={{
-            mb: 2,
-            backgroundColor: "rgba(255, 82, 82, 0.1)",
-            border: "1px solid rgba(255, 82, 82, 0.3)",
+            mb: 3,
+            backgroundColor: "#FF5252",
+            color: "#1A1A1A",
+            border: "2px solid #1A1A1A",
+            boxShadow: "4px 4px 0px #1A1A1A",
+            borderRadius: "0px",
+            fontWeight: 700,
+            "& .MuiAlert-icon": { color: "#1A1A1A" },
           }}
         >
           {error}
@@ -155,15 +148,17 @@ export default function PriorityNotificationsPage() {
 
       {/* Loading State */}
       {loading && (
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {Array.from({ length: 5 }).map((_, i) => (
             <Skeleton
               key={i}
-              variant="rounded"
-              height={80}
+              variant="rectangular"
+              height={100}
               sx={{
-                bgcolor: "rgba(124, 77, 255, 0.06)",
-                borderRadius: "12px",
+                bgcolor: "#E0E0E0",
+                borderRadius: "0px",
+                border: "2px solid #1A1A1A",
+                boxShadow: "4px 4px 0px #1A1A1A",
               }}
             />
           ))}
@@ -175,13 +170,18 @@ export default function PriorityNotificationsPage() {
         <Box
           sx={{
             textAlign: "center",
-            py: 8,
-            color: "#9AA0A6",
+            py: 10,
+            color: "#1A1A1A",
+            border: "2px dashed #1A1A1A",
+            backgroundColor: "#FFFFFF",
+            boxShadow: "4px 4px 0px #1A1A1A",
           }}
         >
-          <PriorityIcon sx={{ fontSize: 48, mb: 2, opacity: 0.3 }} />
-          <Typography variant="h6">No priority notifications</Typography>
-          <Typography variant="body2">
+          <PriorityIcon sx={{ fontSize: 64, mb: 2, opacity: 0.8 }} />
+          <Typography variant="h5" sx={{ fontWeight: 800, textTransform: "uppercase" }}>
+            No priority notifications
+          </Typography>
+          <Typography variant="body1" sx={{ fontWeight: 600, mt: 1 }}>
             {filter
               ? `No unread ${filter} notifications to prioritize`
               : "All caught up! No unread notifications."}
@@ -192,14 +192,14 @@ export default function PriorityNotificationsPage() {
       {!loading && notifications.length > 0 && (
         <>
           {/* Results count */}
-          <Box sx={{ mb: 1.5 }}>
-            <Typography variant="body2" sx={{ color: "#6B7280" }}>
-              Showing {notifications.length} of top {priorityN} priority notifications
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="body1" sx={{ color: "#1A1A1A", fontWeight: 700, textTransform: "uppercase" }}>
+              Showing {notifications.length} of top {priorityN}
               {filter ? ` (${filter} only)` : ""}
             </Typography>
           </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
             {notifications.map((notification, index) => (
               <Fade in timeout={300 + index * 75} key={notification.ID}>
                 <Box sx={{ position: "relative" }}>
@@ -207,30 +207,31 @@ export default function PriorityNotificationsPage() {
                   <Box
                     sx={{
                       position: "absolute",
-                      top: -8,
-                      left: -8,
-                      width: 24,
-                      height: 24,
-                      borderRadius: "50%",
+                      top: -12,
+                      left: -12,
+                      width: 32,
+                      height: 32,
+                      borderRadius: "0px", // Square brutalist badge
                       background:
                         index < 3
-                          ? "linear-gradient(135deg, #7C4DFF, #FF5252)"
-                          : "rgba(107, 114, 128, 0.3)",
+                          ? "#FFF176" // Yellow for top 3
+                          : "#E0E0E0",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       zIndex: 1,
-                      border: "2px solid #121829",
+                      border: "2px solid #1A1A1A",
+                      boxShadow: "2px 2px 0px #1A1A1A",
                     }}
                   >
                     <Typography
                       sx={{
-                        fontSize: "0.65rem",
-                        fontWeight: 700,
-                        color: "#fff",
+                        fontSize: "1rem",
+                        fontWeight: 800,
+                        color: "#1A1A1A",
                       }}
                     >
-                      {index + 1}
+                      #{index + 1}
                     </Typography>
                   </Box>
                   <NotificationCard

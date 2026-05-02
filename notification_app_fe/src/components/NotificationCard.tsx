@@ -36,21 +36,21 @@ interface NotificationCardProps {
 // Color and icon mapping for notification types
 const typeConfig = {
   Placement: {
-    color: "#7C4DFF",
-    bgColor: "rgba(124, 77, 255, 0.12)",
-    icon: <PlacementIcon sx={{ fontSize: 16 }} />,
+    color: "#D8B4E2", // Soft purple
+    borderColor: "#1A1A1A",
+    icon: <PlacementIcon sx={{ fontSize: 16, color: "#1A1A1A" }} />,
     label: "Placement",
   },
   Result: {
-    color: "#FFB74D",
-    bgColor: "rgba(255, 183, 77, 0.12)",
-    icon: <ResultIcon sx={{ fontSize: 16 }} />,
+    color: "#FFF176", // Bright yellow
+    borderColor: "#1A1A1A",
+    icon: <ResultIcon sx={{ fontSize: 16, color: "#1A1A1A" }} />,
     label: "Result",
   },
   Event: {
-    color: "#00E5FF",
-    bgColor: "rgba(0, 229, 255, 0.12)",
-    icon: <EventIcon sx={{ fontSize: 16 }} />,
+    color: "#FF5A36", // Bright orange
+    borderColor: "#1A1A1A",
+    icon: <EventIcon sx={{ fontSize: 16, color: "#1A1A1A" }} />,
     label: "Event",
   },
 };
@@ -84,23 +84,11 @@ export default function NotificationCard({
   return (
     <Card
       sx={{
-        opacity: isRead ? 0.65 : 1,
-        borderLeft: `3px solid ${config.color}`,
+        backgroundColor: isRead ? "#F4F0E6" : "#FFFFFF",
+        opacity: isRead ? 0.8 : 1,
+        borderLeft: `8px solid ${config.color}`,
         position: "relative",
         overflow: "visible",
-        "&::before": !isRead
-          ? {
-              content: '""',
-              position: "absolute",
-              top: -1,
-              left: -4,
-              right: -1,
-              bottom: -1,
-              borderRadius: "12px",
-              background: `linear-gradient(135deg, ${config.color}15, transparent)`,
-              pointerEvents: "none",
-            }
-          : undefined,
       }}
     >
       <CardContent sx={{ py: 2, px: 2.5, "&:last-child": { pb: 2 } }}>
@@ -114,33 +102,30 @@ export default function NotificationCard({
         >
           {/* Left section: Type chip + Message */}
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.75 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
               <Chip
                 icon={config.icon}
                 label={config.label}
                 size="small"
                 sx={{
-                  backgroundColor: config.bgColor,
-                  color: config.color,
-                  border: `1px solid ${config.color}30`,
-                  fontSize: "0.7rem",
-                  height: 24,
+                  backgroundColor: config.color,
+                  color: "#1A1A1A",
+                  fontWeight: 800,
+                  fontSize: "0.75rem",
+                  height: 26,
+                  border: "2px solid #1A1A1A",
+                  boxShadow: "2px 2px 0px #1A1A1A",
                 }}
               />
               {!isRead && (
                 <Box
                   sx={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: "50%",
-                    backgroundColor: config.color,
-                    boxShadow: `0 0 8px ${config.color}80`,
-                    animation: "pulse 2s infinite",
-                    "@keyframes pulse": {
-                      "0%": { opacity: 1, transform: "scale(1)" },
-                      "50%": { opacity: 0.6, transform: "scale(1.2)" },
-                      "100%": { opacity: 1, transform: "scale(1)" },
-                    },
+                    width: 12,
+                    height: 12,
+                    borderRadius: "0px", // Brutalist square
+                    backgroundColor: "#FF5252",
+                    border: "2px solid #1A1A1A",
+                    boxShadow: "2px 2px 0px #1A1A1A",
                   }}
                 />
               )}
@@ -148,9 +133,12 @@ export default function NotificationCard({
                 <Typography
                   variant="caption"
                   sx={{
-                    color: "#9AA0A6",
-                    fontSize: "0.65rem",
+                    color: "#1A1A1A",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
                     ml: "auto",
+                    border: "1px dashed #1A1A1A",
+                    px: 1,
                   }}
                 >
                   Score: {priorityScore.toFixed(0)}
@@ -161,10 +149,11 @@ export default function NotificationCard({
             <Typography
               variant="body1"
               sx={{
-                fontWeight: isRead ? 400 : 600,
-                color: isRead ? "#9AA0A6" : "#E8EAED",
+                fontWeight: isRead ? 500 : 800,
+                color: isRead ? "#4A4A4A" : "#1A1A1A",
                 textTransform: "capitalize",
                 lineHeight: 1.4,
+                mt: 0.5,
               }}
             >
               {message}
@@ -172,7 +161,7 @@ export default function NotificationCard({
 
             <Typography
               variant="caption"
-              sx={{ color: "#6B7280", mt: 0.5, display: "block" }}
+              sx={{ color: "#4A4A4A", mt: 0.5, display: "block", fontWeight: 600 }}
             >
               {formatTime(timestamp)}
             </Typography>
@@ -185,9 +174,15 @@ export default function NotificationCard({
                 size="small"
                 onClick={() => onMarkRead(id)}
                 sx={{
-                  color: config.color,
+                  color: "#1A1A1A",
+                  border: "2px solid #1A1A1A",
+                  backgroundColor: "#69F0AE",
+                  boxShadow: "2px 2px 0px #1A1A1A",
+                  borderRadius: "0px", // Square button
                   "&:hover": {
-                    backgroundColor: config.bgColor,
+                    backgroundColor: "#4ade80",
+                    transform: "translate(-1px, -1px)",
+                    boxShadow: "3px 3px 0px #1A1A1A",
                   },
                 }}
               >
@@ -198,7 +193,7 @@ export default function NotificationCard({
           {isRead && (
             <Tooltip title="Read" arrow>
               <ReadIcon
-                sx={{ fontSize: 18, color: "#4B5563", mt: 0.5 }}
+                sx={{ fontSize: 24, color: "#1A1A1A", mt: 0.5, opacity: 0.5 }}
               />
             </Tooltip>
           )}
