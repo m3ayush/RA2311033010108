@@ -22,7 +22,7 @@ This project implements a **Campus Notifications Microservice** that fetches, pr
 ```
 ┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
 │   Frontend (Next.js)│────▶│  Backend (Express)   │────▶│  Evaluation Service │
-│   localhost:3000    │     │  localhost:5000       │     │  20.207.122.201     │
+│   localhost:3000    │     │  localhost:5001       │     │  20.207.122.201     │
 └─────────────────────┘     └─────────────────────┘     └─────────────────────┘
         │                          │                            │
         ├── All Notifications      ├── Token Management         ├── /auth
