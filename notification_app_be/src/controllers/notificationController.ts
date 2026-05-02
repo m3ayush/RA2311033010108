@@ -29,8 +29,8 @@ const readNotificationIds = new Set<string>();
  */
 export async function getAllNotifications(req: Request, res: Response): Promise<void> {
   try {
-    const page = req.query.page ? parseInt(req.query.page as string, 10) : undefined;
-    const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : undefined;
+    const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
+    const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 20;
     const type = req.query.type as NotificationType | undefined;
 
     await Log(
@@ -40,18 +40,24 @@ export async function getAllNotifications(req: Request, res: Response): Promise<
       `GET /api/notifications — page=${page}, limit=${limit}, type=${type}`
     );
 
-    const notifications = await fetchNotifications(page, limit, type);
+    // Fetch all notifications from external API (no pagination params — we handle it)
+    const allNotifications = await fetchNotifications(undefined, undefined, type);
+
+    // Apply local pagination
+    const startIndex = (page - 1) * limit;
+    const paginatedNotifications = allNotifications.slice(startIndex, startIndex + limit);
 
     // Mark read status on each notification
-    const withReadStatus = notifications.map((n) => ({
+    const withReadStatus = paginatedNotifications.map((n) => ({
       ...n,
       isRead: readNotificationIds.has(n.ID),
     }));
 
     res.json({
       notifications: withReadStatus,
-      total: notifications.length,
-      page: page || 1,
+      total: allNotifications.length,
+      page,
+      totalPages: Math.ceil(allNotifications.length / limit),
     });
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : "Unknown error";
