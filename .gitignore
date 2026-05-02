@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.env
+PROJECT_BRIEF.md
+.DS_Store
+*.log
