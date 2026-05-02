@@ -99,3 +99,17 @@ Frontend runs on `http://localhost:3000`
 | POST | `/api/notifications/:id/read` | Mark as read |
 | POST | `/api/notifications/read-bulk` | Bulk mark as read |
 | GET | `/api/health` | Health check |
+
+## Demo and Screenshots
+
+**Screen Recording:**
+[Watch Screen Recording](./ss/screenrecording.mov)
+
+**Application Screenshots:**
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="./ss/screenshot_1.png" width="400" alt="Screenshot 1"/>
+  <img src="./ss/screenshot_2.png" width="400" alt="Screenshot 2"/>
+  <img src="./ss/screenshot_3.png" width="400" alt="Screenshot 3"/>
+  <img src="./ss/screenshot_4.png" width="400" alt="Screenshot 4"/>
+</div>
